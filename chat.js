@@ -20,28 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.innerHTML = "Loading...";
 
         try {
-            // ✅ correct URL
             const res = await fetch(
                 "https://api.sheety.co/e5f42c6a1510007d10970f8672a067dd/داتا تجربة/medicinesPrices"
             );
-
             const data = await res.json();
-
-            // ❗ Your sheet returns:  { "medicinesPrices": [ ... ] }
             const products = data.medicinesPrices;
 
             grid.innerHTML = "";
 
             products.forEach(p => {
                 const name = p.medicine || "Unknown";
-                const price = Number(p["price ($)"]) || 0;
+                const price = Number(p.price) || 0;
 
                 const div = document.createElement("div");
                 div.className = "product-card";
 
                 div.innerHTML = `
                     <h3>${name}</h3>
-                    <p>Price: $${price}</p>
+                    <p>Price: $${price.toFixed(2)}</p>
                     <button onclick="addToCart('${name}', ${price})">
                         Add to Cart
                     </button>
@@ -49,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 grid.appendChild(div);
             });
-
         } catch (err) {
             grid.innerHTML = "Failed to load products.";
             console.error("PRODUCT LOAD ERROR:", err);
@@ -153,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "Enter") sendMessage();
     });
 
+    // ---------- SEND MESSAGE TO AI ----------
     async function sendMessage() {
         const text = chatInput.value.trim();
         if (!text) return;
@@ -161,14 +157,14 @@ document.addEventListener("DOMContentLoaded", () => {
         chatInput.value = "";
 
         try {
-            const res = await fetch("http://127.0.0.1:5000/ask", {
+            // ✅ تم تعديل الرابط ليكون نسبي للسيرفر على Railway
+            const res = await fetch("/ask", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: text })
             });
 
             const data = await res.json();
-
             if (data.reply) {
                 appendMsg("AI", data.reply);
             } else {
@@ -195,32 +191,20 @@ document.addEventListener("DOMContentLoaded", () => {
         recognition.continuous = false;
         recognition.interimResults = false;
 
-        recognition.onstart = () => {
-            voiceBtn.textContent = "🎙️ Listening...";
-        };
-
+        recognition.onstart = () => { voiceBtn.textContent = "🎙️ Listening..."; };
         recognition.onresult = (event) => {
             const voiceText = event.results[0][0].transcript;
             chatInput.value = voiceText;
             sendMessage();
         };
-
         recognition.onerror = (event) => {
             console.error("Speech recognition error:", event.error);
             voiceBtn.textContent = "🎤";
             alert("حدث خطأ أثناء التسجيل الصوتي: " + event.error);
         };
-
-        recognition.onend = () => {
-            voiceBtn.textContent = "🎤";
-        };
-
+        recognition.onend = () => { voiceBtn.textContent = "🎤"; };
         voiceBtn.onclick = () => {
-            try {
-                recognition.start();
-            } catch (err) {
-                console.error("Recognition start error:", err);
-            }
+            try { recognition.start(); } catch (err) { console.error("Recognition start error:", err); }
         };
     } else {
         voiceBtn.onclick = () => {
