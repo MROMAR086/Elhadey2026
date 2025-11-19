@@ -1,1 +1,59 @@
-<!DOCTYPE html><html lang='ar'><head><meta charset='UTF-8'><title>الهدى المحمدي</title></head><body><h1>الهدى المحمدي</h1></body></html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهدى المحمدي</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+
+<header>
+    <h1>الهدى المحمدي</h1>
+    <nav>
+        <button onclick="showSection('products')">Products</button>
+        <button onclick="showSection('cart')">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+</header>
+
+<!-- PRODUCTS PAGE -->
+<section id="products" class="active">
+    <h2>Available Products</h2>
+    <div class="product-grid"></div>
+</section>
+
+<!-- CART PAGE -->
+<section id="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: $<span id="total">0</span></p>
+
+    <label for="username">Your Name:</label>
+    <input type="text" id="username" placeholder="Enter your name">
+    <button id="checkout">Checkout</button>
+</section>
+
+<!-- AI Chat -->
+<div id="chatButton">💬</div>
+<div id="chatBox">
+    <h3>AI Assistant</h3>
+    <div id="chatMessages"></div>
+
+    <div class="chatInputRow">
+        <input id="chatInput" type="text" placeholder="Ask something...">
+        <button id="voiceBtn">🎤</button>
+        <button id="chatSend">Send</button>
+    </div>
+
+    <div id="cartBox">
+        <h4>سلة التسوق</h4>
+        <div id="cartItems">لا يوجد منتجات بعد</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>
