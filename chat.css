@@ -1,0 +1,96 @@
+/* Chat Button */
+#chatButton {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #28a745;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Chat Box */
+#chatBox {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+/* Chat Messages */
+#chatMessages {
+    height: 180px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    padding: 5px;
+    margin-bottom: 8px;
+    border: 1px solid #eee;
+}
+
+/* Chat Input */
+.chatInputRow {
+    display: flex;
+    gap: 5px;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ddd;
+}
+
+#chatSend {
+    padding: 6px 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#voiceBtn {
+    padding: 6px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#voiceBtn:active {
+    background: #0056b3;
+}
+
+/* Cart Section */
+#cartBox {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background: #f1f1f1;
+    border-radius: 8px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#cartBox h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+#cartItems {
+    font-size: 13px;
+    color: #555;
+}
+
+#cartItems div {
+    margin-bottom: 3px;
+}
