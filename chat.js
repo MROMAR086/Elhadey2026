@@ -1,1 +1,1 @@
-/* chat.js placeholder */
+/* chat.js placeholder with /ask fetch */
